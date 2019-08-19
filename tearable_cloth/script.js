@@ -1,11 +1,3 @@
-document.getElementById('close').onmousedown = function(e) {
-  e.preventDefault();
-  document.getElementById('info').style.display = 'none';
-  return false;
-};
-
-// settings
-
 var physics_accuracy  = 3,
     mouse_influence   = 20,
     mouse_cut         = 5,
@@ -18,14 +10,14 @@ var physics_accuracy  = 3,
 
 
 window.requestAnimFrame =
-    window.requestAnimationFrame ||
-    window.webkitRequestAnimationFrame ||
-    window.mozRequestAnimationFrame ||
-    window.oRequestAnimationFrame ||
-    window.msRequestAnimationFrame ||
-    function (callback) {
-        window.setTimeout(callback, 1000 / 60);
-};
+  window.requestAnimationFrame ||
+  window.webkitRequestAnimationFrame ||
+  window.mozRequestAnimationFrame ||
+  window.oRequestAnimationFrame ||
+  window.msRequestAnimationFrame ||
+  function (callback) {
+    window.setTimeout(callback, 1000 / 60);
+  };
 
 var canvas,
     ctx,
@@ -50,7 +42,7 @@ var Point = function (x, y) {
     this.vy     = 0;
     this.pin_x  = null;
     this.pin_y  = null;
-    
+
     this.constraints = [];
 };
 
@@ -65,7 +57,7 @@ Point.prototype.update = function (delta) {
                 this.px = this.x - (mouse.x - mouse.px) * 1.8;
                 this.py = this.y - (mouse.y - mouse.py) * 1.8;
             }
-          
+
         } else if (dist < mouse_cut) this.constraints = [];
     }
 
@@ -118,7 +110,7 @@ Point.prototype.remove_constraint = function (constraint) {
 Point.prototype.add_force = function (x, y) {
     this.vx += x;
     this.vy += y;
-  
+
     var round = 400;
     this.vx = ~~(this.vx * round) / round;
     this.vy = ~~(this.vy * round) / round;
@@ -240,9 +232,7 @@ function start() {
     boundsy = canvas.height - 1;
 
     ctx.strokeStyle = '#888';
-  
     cloth = new Cloth();
-  
     update();
 }
 
